@@ -1,16 +1,16 @@
 #
 ---
-title: Security Advisory for Multiple WSO2 Products
-date: 27-01-2017
+title:
+date:
 overview:
 description:
 impact:
 solution:
-publicDisclosure: This is the pub disclosure
+publicDisclosure:
 notes:
-thanks: WSO2 Team.
+thanks:
 advisories:
-  - name: WSO2-2017-0265
+  - name:
     severity:
     score:
     publicDisclosure:
