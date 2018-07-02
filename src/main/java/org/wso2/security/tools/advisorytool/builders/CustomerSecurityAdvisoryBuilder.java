@@ -61,12 +61,6 @@ public class CustomerSecurityAdvisoryBuilder extends SecurityAdvisoryBuilder {
             securityAdvisoryDataFromPMT = getAdvisoryData(securityAdvisory.getName());
 
             if (securityAdvisoryDataFromPMT != null) {
-
-                if (StringUtils.isEmpty(securityAdvisory.getPublicDisclosure())) {
-                    throw new AdvisoryToolException("Public Disclosure field is empty for the advisory "
-                            + securityAdvisory.getName());
-                }
-
                 if (StringUtils.isEmpty(securityAdvisory.getDescription())) {
                     this.securityAdvisory.setDescription(securityAdvisoryDataFromPMT.getDescription());
                 }

@@ -1,182 +1,215 @@
 <!DOCTYPE html>
-<html xmlns:font-size="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <title>{{advisory-title}}</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
-         @font-face { font-family: Arial Unicode MS;}
-         div.header {
-         display: block;
-         height: 60px ;
-         margin-bottom: 20px;
-         position: running(header);
-         }
-         @page {
-         @top-right { content: element(header) }
-         }
-         @media print {
-         .advisory-title {
-         font-weight: 600;
-         font-size: 34px;
-         width: 200%;
-         margin-bottom: 20px;
-         color: #272727;
-         }
-         .advisory-data {
-         font-weight: 400;
-         font-size: 20px;
-         width: 100%;
-         margin-bottom: 20px;
-         color: #232323;
-         }
-         .advisory-score {
-         font-weight: 400;
-         font-size: 18px;
-         width: 100%;
-         margin-bottom: 20px;
-         color: #232323;
-         }
-         .advisory-data-heading {
-         font-weight: bold;
-         font-size: 18px;
-         width: 100%;
-         margin-bottom: 20px;
-         color: #262626;
-         }
-         .advisory-data-style {
-         padding: 5% 7%;
-         font-family: arial;
-         font-size: 13px;
-         line-height: 30px;
-         color: #676767;
-         border-top: 1px solid #ffffff;
-         padding-top: 15px;
-         padding-bottom: 15px;
-         }
-         .advisory-data-value {
-         font-weight: 400;
-         font-size: 15px;
-         width: 100%;
-         margin-bottom: 20px;
-         color: #3e3e3e;
+        @font-face {
+            font-family: Arial Unicode MS;
+        }
 
-         }
-         .table-wum-patch {
-         page-break-after:auto;
-         padding-left:25px;
-         border-collapse: collapse;
-         border:1px solid black;
-         line-height: 40px;
-         align-content: center;
-         margin-top: 20px;
-         font-size: 13px;
-         }
-         .wum-table-row {
-         page-break-inside:avoid;
-         page-break-after:auto;
-         border-collapse: collapse;
-         border:0.5px solid black;
-         }
-         .wum-table-data {
-         page-break-inside:avoid;
-         page-break-after:auto;
-         border-collapse: collapse;
-         border:0.5px solid black;
-         font-size: 13px;
-         color: #232323;
-         padding-left: 5px;
-         }
-         .wum-table-head {
-         background-color: #cccccc;
-         color: #232323;
-         padding-left: 5px;
-         border-collapse: collapse;
-         border:0.5px solid black;
-         margin-left: 10px;
-         margin-right: 4px;
-         font-size: 15px;
-         }
-         .list {
-         border-collapse: collapse;
-         align-content: center;
-         padding-left: 5px;
-         font-size: 13px;
-         border: 0.5px white;
-         list-style: none;
-         }
-         .patch-table-head {
-         page-break-inside:avoid;
-         page-break-after:auto;
-         background-color: #cccccc;
-         color: #232323;
-                  font-size: 15px;
-         border-collapse: collapse;
-         border: 0.5px solid black;
-         }
-         .patch-table-data {
-         page-break-inside:avoid;
-         page-break-after:auto;
-         color: #232323;
-         font-size: 13px;
-         border-collapse: collapse;
-         border: 0.5px solid black;
-         }
-         .page-footer {
-         position: absolute;
-         top: 25cm;
-         width: 100%;
-         }
-         #front-page #info {
-         margin-top: 100px;
-         width: 100%;
-         line-height: 50px
-         }
-         #affected-products {
-         margin-top: 20px;
-         }
-         #overview {
-         margin-top: 20px;
-         }
-         #description {
-         margin-top: 20px;
-         }
-         #impact {
-         margin-top: 20px;
-         }
-         #solution {
-         margin-top: 20px;
-         }
-         #content-page {
-         margin-top: 20px;
-         color:#3a3a3a;
-         }
-         #patch-list {
-         margin-top: 50px;
-         }
-         #public-disclosure {
-         margin-top: 20px;
-         }
-         #notes {
-         margin-top: 10px;
-         }
-         #thanks {
-         margin-top: 10px;
-         }
-         #patch-supported-versions-table {
-         border-collapse: collapse;
-         border-style: solid;
-         border-color: white;
-         margin: 0px 0px;
-         }
-         #patch-supported-versions-head {
-         border-collapse: collapse;
-         border-style: solid;
-         border-color: #cccccc;
-         margin: 0px 0px;
-         }
-         }
-      </style>
+        div.header {
+            display: block;
+            height: 60px;
+            margin-bottom: 20px;
+            position: running(header);
+        }
+
+        @page {
+            @top-right {
+                content: element(header)
+            }
+        }
+
+        @media print {
+            .advisory-title {
+                font-weight: 600;
+                font-size: 34px;
+                width: 200%;
+                margin-bottom: 20px;
+                color: #272727;
+            }
+
+            .advisory-data {
+                font-weight: 400;
+                font-size: 20px;
+                width: 100%;
+                margin-bottom: 20px;
+                color: #232323;
+            }
+
+            .advisory-score {
+                font-weight: 400;
+                font-size: 18px;
+                width: 100%;
+                margin-bottom: 20px;
+                color: #232323;
+            }
+
+            .advisory-data-heading {
+                font-weight: bold;
+                font-size: 18px;
+                width: 100%;
+                margin-bottom: 20px;
+                color: #262626;
+            }
+
+            .advisory-data-style {
+                padding: 5% 7%;
+                font-family: arial;
+                font-size: 13px;
+                line-height: 30px;
+                color: #676767;
+                border-top: 1px solid #ffffff;
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+
+            .advisory-data-value {
+                font-weight: 400;
+                font-size: 15px;
+                width: 100%;
+                margin-bottom: 20px;
+                color: #3e3e3e;
+
+            }
+
+            .table-wum-patch {
+                page-break-after: auto;
+                padding-left: 25px;
+                border-collapse: collapse;
+                border: 1px solid black;
+                line-height: 40px;
+                align-content: center;
+                margin-top: 20px;
+                font-size: 13px;
+            }
+
+            .wum-table-row {
+                page-break-inside: avoid;
+                page-break-after: auto;
+                border-collapse: collapse;
+                border: 0.5px solid black;
+            }
+
+            .wum-table-data {
+                page-break-inside: avoid;
+                page-break-after: auto;
+                border-collapse: collapse;
+                border: 0.5px solid black;
+                font-size: 13px;
+                color: #232323;
+                padding-left: 5px;
+            }
+
+            .wum-table-head {
+                background-color: #cccccc;
+                color: #232323;
+                padding-left: 5px;
+                border-collapse: collapse;
+                border: 0.5px solid black;
+                margin-left: 10px;
+                margin-right: 4px;
+                font-size: 15px;
+            }
+
+            .list {
+                border-collapse: collapse;
+                align-content: center;
+                padding-left: 5px;
+                font-size: 13px;
+                border: 0.5px white;
+                list-style: none;
+            }
+
+            .patch-table-head {
+                page-break-inside: avoid;
+                page-break-after: auto;
+                background-color: #cccccc;
+                color: #232323;
+                font-size: 15px;
+                border-collapse: collapse;
+                border: 0.5px solid black;
+            }
+
+            .patch-table-data {
+                page-break-inside: avoid;
+                page-break-after: auto;
+                color: #232323;
+                font-size: 13px;
+                border-collapse: collapse;
+                border: 0.5px solid black;
+            }
+
+            .page-footer {
+                position: absolute;
+                top: 25cm;
+                width: 100%;
+            }
+
+            #front-page #info {
+                margin-top: 100px;
+                width: 100%;
+                line-height: 50px
+            }
+
+            #affected-products {
+                margin-top: 20px;
+            }
+
+            #overview {
+                margin-top: 20px;
+            }
+
+            #description {
+                margin-top: 20px;
+            }
+
+            #impact {
+                margin-top: 20px;
+            }
+
+            #solution {
+                margin-top: 20px;
+            }
+
+            #content-page {
+                margin-top: 20px;
+                color: #3a3a3a;
+            }
+
+            #patch-list {
+                margin-top: 50px;
+            }
+
+            #public-disclosure {
+                margin-top: 20px;
+            }
+
+            #notes {
+                margin-top: 10px;
+            }
+
+            #thanks {
+                margin-top: 10px;
+            }
+
+            #patch-supported-versions-table {
+                border-collapse: collapse;
+                border-style: solid;
+                border-color: white;
+                margin: 0px 0px;
+            }
+
+            #patch-supported-versions-head {
+                border-collapse: collapse;
+                border-style: solid;
+                border-color: #cccccc;
+                margin: 0px 0px;
+            }
+        }
+    </style>
 </head>
 <body>
 <div class='header'>
@@ -332,7 +365,8 @@
                                     </td>
                                 </tr>
                             {{/affected-wum-products}}
-                        </table><br/> <br/>
+                        </table>
+                        <br/> <br/>
                     {{/affected-wum-products.empty}}
                     <span class="break-page"></span>
                 </table>
@@ -341,8 +375,8 @@
         <span class="break-page"></span>
         {{^affected-patch-products.empty}}
             <u
-                class="advisory-data-value">For
-            Patch Supported Products</u><br/><br/>
+                    class="advisory-data-value">For
+                Patch Supported Products</u><br/><br/>
             <span class="advisory-data-value">Apply the following patches based on your product version
             by following the instructions in the README file. Please use your WSO2 support credentials
             to access the patch links.</span>
@@ -364,7 +398,8 @@
                 class="advisory-data-value">Please download the relevant patches based on the products
             you use following the matrix below.</span> <br/><br/>
             <span class="break-page"></span>
-            <table class="table-wum-patch" style="page-break-after:auto;border-collapse: collapse;width:100%; height:100%">
+            <table class="table-wum-patch"
+                   style="page-break-after:auto;border-collapse: collapse;width:100%; height:100%">
                 <thead>
                 <tr style="page-break-inside:avoid; page-break-after:auto">
                     <th class="patch-table-head" style="padding-left: 5px;width: 15%">
@@ -418,17 +453,21 @@
                 </thead>
             </table>
         {{/affected-patch-products.empty}}
-        <span class="break-page"></span>
-        <tr>
-            <td colspan="2" class="advisory-data-style">
-                <table id="public-disclosure" style="width: 100%;">
-                    <tr>
-                        <span class="advisory-data-heading">PUBLIC DISCLOSURE</span><br/>
-                        <span class="advisory-data-value">{{public-disclosure}}</span><br/>
-                    </tr>
-                </table>
-            </td>
-        </tr>
+
+        {{^public-disclosure.empty}}
+            <span class="break-page"></span>
+            <tr>
+                <td colspan="2" class="advisory-data-style">
+                    <table id="public-disclosure" style="width: 100%;">
+                        <tr>
+                            <span class="advisory-data-heading">PUBLIC DISCLOSURE</span><br/>
+                            <span class="advisory-data-value">{{public-disclosure}}</span><br/>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        {{/public-disclosure.empty}}
+
         <span class="break-page"></span>
         <tr>
             <td colspan="2" class="advisory-data-style">

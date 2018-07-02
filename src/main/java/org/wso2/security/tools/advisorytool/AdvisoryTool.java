@@ -26,7 +26,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.wso2.security.tools.advisorytool.builders.CustomerSecurityAdvisoryBuilder;
 import org.wso2.security.tools.advisorytool.builders.SecurityAdvisoryBuilder;
 import org.wso2.security.tools.advisorytool.builders.SecurityAdvisoryDirector;
 import org.wso2.security.tools.advisorytool.config.Configuration;
@@ -34,17 +33,12 @@ import org.wso2.security.tools.advisorytool.config.ConfigurationBuilder;
 import org.wso2.security.tools.advisorytool.data.ProductDataHolder;
 import org.wso2.security.tools.advisorytool.data.SecurityAdvisoryDataHolder;
 import org.wso2.security.tools.advisorytool.exeption.AdvisoryToolException;
+import org.wso2.security.tools.advisorytool.model.Extension;
 import org.wso2.security.tools.advisorytool.model.Product;
 import org.wso2.security.tools.advisorytool.model.SecurityAdvisory;
 import org.wso2.security.tools.advisorytool.model.SecurityAdvisoryData;
 import org.wso2.security.tools.advisorytool.model.Version;
 import org.wso2.security.tools.advisorytool.output.SecurityAdvisoryOutputGenerator;
-import org.wso2.security.tools.advisorytool.output.html.SecurityAdvisoryHTMLOutputGenerator;
-import org.wso2.security.tools.advisorytool.output.html.SecurityAdvisoryHTMLOutputGeneratorFromXML;
-import org.wso2.security.tools.advisorytool.output.pdf.SecurityAdvisoryPDFOutputGenerator;
-import org.wso2.security.tools.advisorytool.output.pdf.SecurityAdvisoryPDFOutputGeneratorFromHTML;
-import org.wso2.security.tools.advisorytool.output.pdf.SecurityAdvisoryPDFOutputGeneratorFromXML;
-import org.wso2.security.tools.advisorytool.output.xml.SecurityAdvisoryXMLOutputGenerator;
 import org.wso2.security.tools.advisorytool.utils.Constants;
 
 import java.io.File;
@@ -143,10 +137,27 @@ public class AdvisoryTool {
      * @param advisoryType
      * @return
      */
-    private static SecurityAdvisoryBuilder getSecurityAdvisoryBuilder(String advisoryType) {
+    private static SecurityAdvisoryBuilder getSecurityAdvisoryBuilder(String advisoryType)
+            throws AdvisoryToolException {
         SecurityAdvisoryBuilder securityAdvisoryBuilder = null;
-        if ("customer".equals(advisoryType)) {
-            securityAdvisoryBuilder = new CustomerSecurityAdvisoryBuilder();
+
+        for (Extension advisoryBuilder : Configuration.getInstance().getAdvisoryBuilders()) {
+            try {
+                if (advisoryType.equals(advisoryBuilder.getId())) {
+                    securityAdvisoryBuilder = (SecurityAdvisoryBuilder) Class
+                            .forName(advisoryBuilder.getClassName()).newInstance();
+                }
+            } catch (ClassNotFoundException e) {
+                throw new AdvisoryToolException("Unable to find the class " + advisoryBuilder
+                        .getClassName(), e);
+            } catch (InstantiationException | IllegalAccessException e) {
+                throw new AdvisoryToolException("Unable to create an instance of the class "
+                        + advisoryBuilder.getClassName(), e);
+            }
+        }
+        if (securityAdvisoryBuilder == null) {
+            throw new AdvisoryToolException("unable to find an output generator for the given id "
+                    + advisoryType);
         }
 
         return securityAdvisoryBuilder;
@@ -163,28 +174,20 @@ public class AdvisoryTool {
             throws AdvisoryToolException {
         SecurityAdvisoryOutputGenerator securityAdvisoryOutputGenerator = null;
 
-        switch (advisoryOutFormat) {
-            case "pdf":
-                securityAdvisoryOutputGenerator = new SecurityAdvisoryPDFOutputGenerator();
-                break;
-            case "xml":
-                securityAdvisoryOutputGenerator = new SecurityAdvisoryXMLOutputGenerator();
-                break;
-            case "html":
-                securityAdvisoryOutputGenerator = new SecurityAdvisoryHTMLOutputGenerator();
-                break;
-            case "xml2pdf":
-                securityAdvisoryOutputGenerator = new SecurityAdvisoryPDFOutputGeneratorFromXML();
-                break;
-            case "html2pdf":
-                securityAdvisoryOutputGenerator = new SecurityAdvisoryPDFOutputGeneratorFromHTML();
-                break;
-            case "xml2html":
-                securityAdvisoryOutputGenerator = new SecurityAdvisoryHTMLOutputGeneratorFromXML();
-                break;
-            default:
-                throw new AdvisoryToolException("Invalid advisory output format");
-
+        for (Extension outputGenerator : Configuration.getInstance().getOutputGenerators()) {
+            try {
+                if (advisoryOutFormat.equals(outputGenerator.getId())) {
+                    securityAdvisoryOutputGenerator = (SecurityAdvisoryOutputGenerator) Class
+                            .forName(outputGenerator.getClassName()).newInstance();
+                }
+            } catch (ClassNotFoundException e) {
+                throw new AdvisoryToolException("Unable to find the class " + outputGenerator.getClassName(), e);
+            } catch (InstantiationException | IllegalAccessException e) {
+                throw new AdvisoryToolException("Unable to create an instance of the class " + outputGenerator.getClassName(), e);
+            }
+        }
+        if (securityAdvisoryOutputGenerator == null) {
+            throw new AdvisoryToolException("unable to find an output generator for the given id " + advisoryOutFormat);
         }
         return securityAdvisoryOutputGenerator;
     }
@@ -418,7 +421,19 @@ public class AdvisoryTool {
         if (configuration.getPlatforms() != null) {
             Configuration.getInstance().setPlatforms(configuration.getPlatforms());
         } else {
-            throw new AdvisoryToolException("Platform List cannot be empty");
+            throw new AdvisoryToolException("Platform list cannot be empty");
+        }
+
+        if (configuration.getAdvisoryBuilders() != null) {
+            Configuration.getInstance().setAdvisoryBuilders(configuration.getAdvisoryBuilders());
+        } else {
+            throw new AdvisoryToolException("Advisory builder list cannot be empty");
+        }
+
+        if (configuration.getOutputGenerators() != null) {
+            Configuration.getInstance().setOutputGenerators(configuration.getOutputGenerators());
+        } else {
+            throw new AdvisoryToolException("Advisory output generator list cannot be empty");
         }
     }
 }

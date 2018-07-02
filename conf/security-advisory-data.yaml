@@ -1,4 +1,4 @@
-#
+# Security Advisory Data
 ---
 title:
 date:
@@ -8,7 +8,7 @@ impact:
 solution:
 publicDisclosure:
 notes:
-thanks:
+thanks: WSO2 Team
 advisories:
   - name:
     severity:

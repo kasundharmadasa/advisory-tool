@@ -20,6 +20,7 @@
 package org.wso2.security.tools.advisorytool.config;
 
 import org.apache.commons.codec.binary.Base64;
+import org.wso2.security.tools.advisorytool.model.Extension;
 import org.wso2.security.tools.advisorytool.model.Platform;
 
 import java.nio.charset.Charset;
@@ -49,6 +50,8 @@ public class Configuration {
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
 
     private List<Platform> platforms = new ArrayList<>();
+    private List<Extension> outputGenerators = new ArrayList<>();
+    private List<Extension> advisoryBuilders = new ArrayList<>();
 
     private Configuration() {
     }
@@ -157,6 +160,22 @@ public class Configuration {
 
     public void setAdvisoryDetailsAPIAuthToken(String advisoryDetailsAPIAuthToken) {
         this.advisoryDetailsAPIAuthToken = advisoryDetailsAPIAuthToken;
+    }
+
+    public List<Extension> getOutputGenerators() {
+        return outputGenerators;
+    }
+
+    public List<Extension> getAdvisoryBuilders() {
+        return advisoryBuilders;
+    }
+
+    public void setAdvisoryBuilders(List<Extension> advisoryBuilders) {
+        this.advisoryBuilders = advisoryBuilders;
+    }
+
+    public void setOutputGenerators(List<Extension> outputGenerators) {
+        this.outputGenerators = outputGenerators;
     }
 
     public int getPatchSupportPeriod() {

@@ -35,6 +35,12 @@ public class SecurityAdvisoryPDFOutputGeneratorFromHTML extends SecurityAdvisory
             File outputFile = new File(Constants.SECURITY_ADVISORY_OUTPUT_DIRECTORY
                     + File.separator + "pdf" + File.separator + securityAdvisory.getName() + ".pdf");
 
+            File outputDirectory = new File(outputFile.getParent());
+            outputDirectory.mkdirs();
+            if (!outputDirectory.exists()) {
+                throw new AdvisoryToolException("Unable to create the directory " + outputDirectory);
+            }
+
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
 
@@ -46,6 +52,7 @@ public class SecurityAdvisoryPDFOutputGeneratorFromHTML extends SecurityAdvisory
             String htmlString = sb.toString();
             createPDFFromHTML(htmlString, outputFile.toString());
 
+            logger.info("Security Advisory PDF generation from HTML completed");
         } catch (IOException e) {
             throw new AdvisoryToolException("Failed to generate the security advisory object " +
                     "from the security advisory HTML", e);

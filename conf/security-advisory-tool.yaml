@@ -1,4 +1,4 @@
-#
+# Advisory Tool Configurations
 ---
 patchListAPI:
 patchDetailsAPI:
@@ -32,3 +32,29 @@ platforms:
   - name: Wilkes
     versionNumber: 4.4.0
     patchDirectoryName: Carbon 4.4.0 (Wilkes)
+
+
+
+advisoryBuilders:
+  - id: customer
+    className: org.wso2.security.tools.advisorytool.builders.CustomerSecurityAdvisoryBuilder
+
+
+outputGenerators:
+  - id: pdf
+    className: org.wso2.security.tools.advisorytool.output.pdf.SecurityAdvisoryPDFOutputGenerator
+
+  - id: html
+    className: org.wso2.security.tools.advisorytool.output.html.SecurityAdvisoryHTMLOutputGenerator
+
+  - id: xml
+    className: org.wso2.security.tools.advisorytool.output.xml.SecurityAdvisoryXMLOutputGenerator
+
+  - id: html2pdf
+    className: org.wso2.security.tools.advisorytool.output.pdf.SecurityAdvisoryPDFOutputGeneratorFromHTML
+
+  - id: xml2pdf
+    className: org.wso2.security.tools.advisorytool.output.pdf.SecurityAdvisoryPDFOutputGeneratorFromXML
+
+  - id: xml2html
+    className: org.wso2.security.tools.advisorytool.output.html.SecurityAdvisoryHTMLOutputGeneratorFromXML
