@@ -71,6 +71,8 @@
      isWumSupported: false
      isPatchSupported: true
      isDeprecated: true
+
+
  -
   codeName: GREG
   name: "WSO2 Governance Registry"
@@ -129,6 +131,8 @@
      isPatchSupported: true
      isPublicSupported: true
      isDeprecated: true
+
+
  -
   codeName: AM
   name: "WSO2 API Manager"
@@ -230,9 +234,8 @@
      isPublicSupported: true
 
 
-
  -
-  codeName: "AM-Analytics"
+  codeName: AM-Analytics
   name: "WSO2 API Manager Analytics"
   versionList:
 
@@ -259,6 +262,7 @@
      isWumSupported: true
      isPatchSupported: true
      isPublicSupported: false
+
 
  -
   codeName: IOT
@@ -301,8 +305,9 @@
      isPublicSupported: false
      isDeprecated: true
 
+
  -
-  codeName: "IS KM"
+  codeName: IS KM
   name: "WSO2 IS as Key Manager"
   versionList:
 
@@ -326,6 +331,7 @@
      versionNumber: "5.2.0"
      isWumSupported: true
      isPatchSupported: true
+
 
  -
   codeName: IS
@@ -397,8 +403,9 @@
      isWumSupported: false
      isPatchSupported: true
 
+
  -
-  codeName: "IS-Analytics"
+  codeName: IS-Analytics
   name: "WSO2 Identity Server Analytics"
   versionList:
 
@@ -436,6 +443,7 @@
      versionNumber: "5.2.0"
      isWumSupported: true
      isPatchSupported: true
+
 
  -
   codeName: EMM
@@ -542,6 +550,7 @@
      isPatchSupported: true
      isDeprecated: true
 
+
  -
   codeName: ML
   name: "WSO2 Machine Learner"
@@ -567,6 +576,7 @@
      versionNumber: "1.0.0"
      isWumSupported: false
      isPatchSupported: true
+
 
  -
   codeName: CEP
@@ -609,6 +619,7 @@
      isWumSupported: false
      isPatchSupported: true
      isDeprecated: true
+
 
  -
   codeName: DAS
@@ -688,7 +699,7 @@
 
 
  -
-  codeName: "ESB-Analytics"
+  codeName: ESB-Analytics
   name: "WSO2 Enterprise Service Bus Analytics"
   versionList:
 
@@ -698,6 +709,7 @@
      versionNumber: "5.0.0"
      isWumSupported: true
      isPatchSupported: true
+
 
  -
   codeName: ESB
@@ -733,6 +745,8 @@
      isWumSupported: false
      isPatchSupported: true
      isDeprecated: true
+
+
  -
   codeName: ES
   name: "WSO2 Enterprise Store"
@@ -762,6 +776,7 @@
      isPatchSupported: true
      isDeprecated: true
 
+
  -
   codeName: APPM
   name: "WSO2 App Manager"
@@ -788,6 +803,8 @@
      isWumSupported: false
      isPatchSupported: true
      isDeprecated: true
+
+
  -
   codeName: DS
   name: "WSO2 Dashboard Server"
@@ -800,6 +817,7 @@
      isWumSupported: false
      isPatchSupported: true
      isDeprecated: true
+
 
  -
   codeName: PPAAS
@@ -829,6 +847,7 @@
      isWumSupported: false
      isPatchSupported: false
      isDeprecated: true
+
 
  -
   codeName: BRS
@@ -878,6 +897,7 @@
      isWumSupported: false
      isPatchSupported: true
      isDeprecated: true
+
 
  - 
   codeName: SS
